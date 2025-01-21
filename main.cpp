@@ -3,7 +3,9 @@
 
 int main() {
 
-termDisp();
+terminal mTerm;
+
+mTerm.termDisp();
 
 return 0;
 
