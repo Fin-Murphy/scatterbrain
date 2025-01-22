@@ -34,8 +34,8 @@ std::vector<std::string> terminal::fQuery(std::vector<std::string> returnvec) {
 
 	try {
 
-	std::ifstream file ("/storage.txt");
-	throw std::invalid_argument("Not a valid arg");
+	std::ifstream file ("./storage.txt");
+	if(!file.is_open()){throw std::invalid_argument("Not a valid arg");}
 	//std::vector<std::string> returnvec = {};
 	std::string line;
 
@@ -51,7 +51,7 @@ std::vector<std::string> terminal::fQuery(std::vector<std::string> returnvec) {
 	catch(...){
 		std::cout << "operation failed, creating taskfile" << std::endl;
 
-		std::ofstream file("/storage.txt");
+		std::ofstream file("./storage.txt");
 
 		file << "SPECIFIER:_Base_Tasklist_File" << std::endl;
 		file << "1.2.3.4.5" << std::endl;
