@@ -53,8 +53,8 @@ std::vector<std::string> terminal::fQuery(std::vector<std::string> returnvec) {
 
 		std::ofstream file("./storage.txt");
 
-		file << "SPECIFIER:_Base_Tasklist_File" << std::endl;
-		file << "1.2.3.4.5" << std::endl;
+		file << "> SPECIFIER:_Base_Tasklist_File" << std::endl;
+		file << "> 1.2.3.4.5" << std::endl;
 	
 		std::cout << "Wrote in basic file" << std::endl;
 
