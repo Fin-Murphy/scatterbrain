@@ -1,19 +1,13 @@
 #include "term.h"
 
-
-
-
 std::vector<Task> terminal::fQuery(std::string strinp) {
-
 	std::vector<Task> returnvec = {};
 
-	try {
-
+	try 
+    {
 	std::ifstream file ("./storage.txt");
 	if(!file.is_open()){throw std::invalid_argument("Not a valid arg");}
-	//std::vector<std::string> returnvec = {};
 	std::string line;
-
 		while(std::getline(file,line)) {
 			std::stringstream ss(line);
 			std::string taskName;
@@ -31,53 +25,43 @@ std::vector<Task> terminal::fQuery(std::string strinp) {
             }
 		}
 	}
-
 	catch(...){
-		std::cout << "operation failed, creating taskfile" << std::endl;
-
+		std::cout << "\033[31m\n| > OPERATION FAILED! \n| > CREATING TASKFILE.\n| > FILE CREATED!\033[0m ATTEMPT OPERATION AGAIN \n" << std::endl;
 		std::ofstream file("./storage.txt");
-
 		file << "> SPECIFIER:_Base_Tasklist_File" << std::endl;
 		file << "> 1.2.3.4.5" << std::endl;
-        file << "Task1 0 1" << std::endl;
-        file << "Task2 0 1" << std::endl;
-        file << "Task3 0 1" << std::endl;
-	
-		std::cout << "Wrote in basic file" << std::endl;
-
+        file << "Task1 0 1\nTask2 0 1\nTask3 0 1" << std::endl;
     }
-
-    
-
 return returnvec;
-
 }
 
 
 void terminal::termDisp(terminal inpterm) {
+
+    std::cout << "\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
+
 	bool dRun = true;
 	
 	while(dRun == true){
 
 		std::string userInp = "";
-		std::cout 
-		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-		<< 	" Continue? (enter to continue, q to quit, l to list tasks): > ";
+		std::cout << 	"| inCursor >  | ";
 		std::cin >> userInp;
-
-		if(userInp == "q"){
+        if(userInp == "help"){
+            std::cout << "|\n| > 'quit' to quit program\n| > 'list' to list tasks";
+        }
+		else if(userInp == "quit"){
+            std::cout << "\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
 
 			dRun = false;
 
 		}
-		if(userInp == "l"){
+		else if(userInp == "list"){
 			std::vector<Task> ovec = inpterm.fQuery("l");
             for(Task t : ovec){
                 std::cout << t.name << std::endl;
             }
-		}
+		} else {std::cout << "\n| > \033[31mCommand unrecognized!\033[0m \n|" << std::endl;}
 
 	}
 
