@@ -11,26 +11,25 @@ class terminal {
 public:
 int x;
 int y;
-void termDisp(); 
-std::vector<std::string> fQuery(std::vector<std::string> returnvec);
+void termDisp(terminal inpterm); 
+std::vector<std::string> fQuery();
 };
 
 
 int main() {
 terminal mTerm;
 
-std::vector<std::string> valVec = {};
-std::vector<std::string> tasks = mTerm.fQuery(valVec);
-
-
-mTerm.termDisp();
+std::vector<std::string> tasks = mTerm.fQuery();
+mTerm.termDisp(mTerm);
 
 
 return 0;
 
 }
 
-std::vector<std::string> terminal::fQuery(std::vector<std::string> returnvec) {
+std::vector<std::string> terminal::fQuery() {
+
+	std::vector<std::string> returnvec = {};
 
 	try {
 
@@ -65,10 +64,7 @@ return returnvec;
 }
 
 
-void terminal::termDisp() {
-
-
-
+void terminal::termDisp(terminal inpterm) {
 	bool dRun = true;
 	
 	while(dRun == true){
@@ -85,7 +81,10 @@ void terminal::termDisp() {
 
 			dRun = false;
 
-		} else {}
+		}
+		if(userInp == "l"){
+			inpterm.fQuery();
+		}
 
 	}
 
