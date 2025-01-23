@@ -16,6 +16,14 @@
 #include <exception>
 #include <stdexcept>
 
+struct Task {
+    std::string name;
+    int cval;
+    int comp;
+};
+
+
+
 //#include "term.h"
 
 class terminal {
@@ -23,7 +31,7 @@ public:
 int x;
 int y;
 void termDisp(terminal inpterm); 
-std::vector<std::string> fQuery();
+std::vector<Task> fQuery(std::string strinp);
 };
 
 

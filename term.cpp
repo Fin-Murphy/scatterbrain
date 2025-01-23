@@ -1,18 +1,11 @@
-#include <iostream>
-#include <string>
-#include <fstream> 
-#include <vector>
-#include <sstream> 
-#include <iomanip>
-#include <exception>
-#include <stdexcept>
-
 #include "term.h"
 
 
-std::vector<std::string> terminal::fQuery() {
 
-	std::vector<std::string> returnvec = {};
+
+std::vector<Task> terminal::fQuery(std::string strinp) {
+
+	std::vector<Task> returnvec = {};
 
 	try {
 
@@ -26,7 +19,16 @@ std::vector<std::string> terminal::fQuery() {
 			std::string taskName;
 			int taskCval;
 			int taskComp;
-
+            ss >> taskName;
+            if(taskName != ">"){
+                ss >> taskCval;
+                ss >> taskComp;
+                Task t;
+                t.name = taskName;
+                t.cval = taskCval;
+                t.comp = taskComp;
+                returnvec.push_back(t);
+            }
 		}
 	}
 
@@ -37,10 +39,15 @@ std::vector<std::string> terminal::fQuery() {
 
 		file << "> SPECIFIER:_Base_Tasklist_File" << std::endl;
 		file << "> 1.2.3.4.5" << std::endl;
+        file << "Task1 0 1" << std::endl;
+        file << "Task2 0 1" << std::endl;
+        file << "Task3 0 1" << std::endl;
 	
 		std::cout << "Wrote in basic file" << std::endl;
 
     }
+
+    
 
 return returnvec;
 
@@ -57,7 +64,7 @@ void terminal::termDisp(terminal inpterm) {
 		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		//<< "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-		<< 	" Continue? (enter to continue, q to quit): > ";
+		<< 	" Continue? (enter to continue, q to quit, l to list tasks): > ";
 		std::cin >> userInp;
 
 		if(userInp == "q"){
@@ -66,7 +73,10 @@ void terminal::termDisp(terminal inpterm) {
 
 		}
 		if(userInp == "l"){
-			inpterm.fQuery();
+			std::vector<Task> ovec = inpterm.fQuery("l");
+            for(Task t : ovec){
+                std::cout << t.name << std::endl;
+            }
 		}
 
 	}
