@@ -10,6 +10,7 @@ terminal::terminal() {
 		ofile << "> 1.2.3.4.5" << std::endl;
         ofile << "Task1 0 1\nTask2 0 1\nTask3 0 1" << std::endl;
 		std::ifstream file ("./storage.txt");
+
 	}
 	std::string line;
 	while(std::getline(file,line)) {
@@ -46,6 +47,7 @@ void terminal::termDisp() {
             std::cout << "|\n| > 'quit' to quit program\n| > 'list' to list tasks\n";
         }
 		else if(userInp == "quit"){
+			des();
             std::cout << "\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n";
 
 			dRun = false;
@@ -57,7 +59,7 @@ void terminal::termDisp() {
             }
 		} else if(userInp == "strike"){
 			std::string tID = "";
-			std::cout << "| Task name to mark as completed > ";
+			//std::cout << "| Task name to mark as completed > ";
 			std::cin >> tID;
 			int itr = 0;
 			for(Task t : this->tasklist){
@@ -75,3 +77,21 @@ void terminal::termDisp() {
 
 }
 
+void terminal::des() {
+
+
+for(Task t : this->tasklist){
+
+	std::ofstream ofile("./storage.txt");
+		ofile << "> OVERWRITE" << std::endl;
+		ofile << "> OVERWRITE" << std::endl;
+        ofile << "> OVERWRITE" << std::endl;
+
+
+
+}
+
+
+
+
+}

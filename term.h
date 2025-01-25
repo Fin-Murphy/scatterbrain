@@ -31,6 +31,7 @@ int x;
 int y;
 void termDisp(); 
 void fQuery();
+void des();
 };
 
 
