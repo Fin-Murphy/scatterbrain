@@ -4,7 +4,7 @@
 int main() {
 terminal mTerm;
 
-mTerm.termDisp(mTerm);
+mTerm.termDisp();
 
 return 0;
 }

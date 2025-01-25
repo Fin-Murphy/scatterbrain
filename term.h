@@ -3,10 +3,6 @@
 #ifndef __TERM_H__
 #define __TERM_H__
 
-
-
-
-
 #include <iostream>
 #include <string>
 #include <fstream> 
@@ -27,11 +23,14 @@ struct Task {
 //#include "term.h"
 
 class terminal {
+private:
+std::vector<Task> tasklist;
 public:
+terminal();
 int x;
 int y;
-void termDisp(terminal inpterm); 
-std::vector<Task> fQuery(std::string strinp);
+void termDisp(); 
+void fQuery();
 };
 
 
