@@ -12,25 +12,24 @@ terminal::terminal() {
 		std::ifstream file ("./storage.txt");
 	}
 	std::string line;
-		while(std::getline(file,line)) {
-			std::stringstream ss(line);
-			std::string taskName;
-			int taskCval;
-			int taskComp;
-            ss >> taskName;
-            if(taskName != ">"){
-                ss >> taskCval;
-                ss >> taskComp;
-                Task t;
-                t.name = taskName;
-                t.cval = taskCval;
-                t.comp = taskComp;
-                this->tasklist.push_back(t);
-            }
+	while(std::getline(file,line)) {
+		std::stringstream ss(line);
+		std::string taskName;
+		int taskCval;
+		int taskComp;
+		ss >> taskName;
+		if(taskName != ">"){
+			ss >> taskCval;
+			ss >> taskComp;
+			Task t;
+			t.name = taskName;
+			t.cval = taskCval;
+			t.comp = taskComp;
+			this->tasklist.push_back(t);
 		}
+	}
 
 }
-
 
 void terminal::termDisp() {
 
@@ -53,11 +52,19 @@ void terminal::termDisp() {
 
 		}
 		else if(userInp == "list"){
-			//std::vector<Task> ovec = inpterm.fQuery("l");
             for(Task t : this->tasklist){
                 std::cout << t.name << std::endl;
             }
-		} else if(userInp == "list"){
+		} else if(userInp == "strike"){
+			std::string tID = "";
+			std::cout << "| Task name to mark as completed > ";
+			std::cin >> tID;
+			int itr = 0;
+			for(Task t : this->tasklist){
+				if(t.name == tID){
+					this->tasklist.erase(this->tasklist.begin() + itr);
+				} else {itr++;}
+			}
 			
 
 
