@@ -24,14 +24,17 @@ struct Task {
 
 class terminal {
 private:
-std::vector<Task> tasklist;
+
+    std::vector<Task> tasklist;
+
 public:
+
 terminal();
-int x;
-int y;
-void termDisp(); 
-void fQuery();
-void des();
+
+    void readFile(std::string infilename);
+    void termDisp(); 
+    //void fQuery();
+    void des();
 };
 
 
