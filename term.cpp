@@ -1,5 +1,6 @@
 #include "term.h"
 
+
 terminal::terminal(){
 
 	std::ifstream file("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
@@ -43,14 +44,10 @@ terminal::terminal(){
 	}
 		
 }
-//Testing 1212
+
+
 
 
 terminal::~terminal(){
-
-
-
-	std::cout << "Exiting the program" << std::endl;
-
 
 }
