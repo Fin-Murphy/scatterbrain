@@ -2,12 +2,12 @@
 
 terminal::terminal(){
 
-std::ifstream file("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
-std::string line;
-std::string lim;
-int wordCount = 0;
-int maxWords = 15;
-std::string currentList;
+	std::ifstream file("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
+	std::string line;
+	std::string lim;
+	int wordCount = 0;
+	int maxWords = 15;
+	std::string currentList;
 
 	while(std::getline(file,line)){
 		std::stringstream ss(line);
@@ -24,6 +24,8 @@ std::string currentList;
 				task = task + " " + word;
 				wordCount++; 
 			}
+
+
 			Task T;
 			T.name = task;
 			T.list = currentList;
@@ -41,9 +43,11 @@ std::string currentList;
 	}
 		
 }
+//Testing 1212
 
 
 terminal::~terminal(){
+
 
 
 	std::cout << "Exiting the program" << std::endl;
