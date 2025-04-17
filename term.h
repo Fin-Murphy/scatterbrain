@@ -13,28 +13,25 @@
 #include <stdexcept>
 
 struct Task {
-    std::string name;
-    int cval;
-    int comp;
+    std::string name = "Task_";
+    int val_needed = 0;
+    int current_val = 0;
 };
 
-
-
-//#include "term.h"
-
 class terminal {
+
 private:
-
     std::vector<Task> tasklist;
-
 public:
 
-terminal();
+    terminal();
+    ~terminal();
 
-    void readFile(std::string infilename);
     void termDisp(); 
-    //void fQuery();
-    void des();
+    void write();
+    void list();
+    void strike();
+    void help();
 };
 
 

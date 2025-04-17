@@ -2,9 +2,9 @@
 
 
 int main() {
-terminal mTerm;
 
-mTerm.termDisp();
+    
+terminal mTerm;
 
 return 0;
 }
