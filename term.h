@@ -16,13 +16,13 @@ struct Task {
     std::string name = "Task_";
     int val_needed = 0;
     int current_val = 0;
+    std::string list = "Basic_Task";
 };
 
 class terminal {
 
-private:
+    public:
     std::vector<Task> tasklist;
-public:
 
     terminal();
     ~terminal();
