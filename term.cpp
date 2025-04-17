@@ -2,18 +2,15 @@
 
 
 terminal::terminal(){
-
 	std::ifstream file("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
 	std::string line;
 	std::string lim;
 	int wordCount = 0;
 	int maxWords = 15;
 	std::string currentList;
-
 	while(std::getline(file,line)){
 		std::stringstream ss(line);
 		ss >> lim;
-
 		if(lim == "-"){
 			wordCount = 0;
 			std::string task = "";
@@ -25,8 +22,6 @@ terminal::terminal(){
 				task = task + " " + word;
 				wordCount++; 
 			}
-
-
 			Task T;
 			T.name = task;
 			T.list = currentList;
@@ -40,12 +35,8 @@ terminal::terminal(){
 		} else if(lim == "***"){
 			break;
 		}
-
 	}
-		
 }
-
-
 
 
 terminal::~terminal(){
