@@ -3,7 +3,7 @@
 
 terminal::terminal(){
 	std::vector<std::string> pullSources;
-	// pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
+	pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
 	pullSources.push_back("/Users/owner/Desktop/Vaults/0-SCHOOL/Assignments.md");
 	
 	for(std::string s : pullSources){
@@ -82,9 +82,12 @@ void terminal::listAllTasks(){
 	for(Task T : tasklist){
 		std::cout 
 		<< "[ ] " << T.dueDate << " "
-		<< std::setw(30) << T.name << std::setw(15) << " | " 
+		<< std::setw(30) << std::left << T.name << std::setw(15) << " | " 
 		<< T.list << " |" <<
 		std::endl;
 	}
-
 }
+
+
+
+

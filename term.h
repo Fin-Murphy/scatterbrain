@@ -74,6 +74,7 @@ struct Task {
     int current_val = 0;
     std::string list = "Basic_Task";
     Date dueDate;
+    std::string taskCategory;
 };
 
  class terminal {
@@ -87,6 +88,7 @@ struct Task {
     void termDisp(); 
     void runTime();
     void listAllTasks();
+    void listTasks(std::string category = "Assignments");
 };
 
 
@@ -118,13 +120,13 @@ std::ostream& operator<<(std::ostream &os, const Date &rhsObj){
     os << std::setw(2) << rhsObj.dd;
     if(rhsObj.yyyy != -1){
         os << "/";
-        os << std::setw(2) << rhsObj.yyyy;
+        os << std::setfill(' ');
+        os << std::setw(4) << rhsObj.yyyy;
+    } else {
+        os << std::setfill(' ');
+        os << std::setw(4) << "     ";
     }
    
-
-    // set the fill character back to a blank space to prevent really ugly output of other values
-    os << std::setfill(' ');
-
     return os;
 
 }
