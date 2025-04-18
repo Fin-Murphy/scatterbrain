@@ -16,28 +16,42 @@ terminal::terminal(){
 		while(std::getline(file,line)){
 			std::stringstream ss(line);
 			ss >> lim;
+
 			if(lim == "-"){
 				wordCount = 0;
 				std::string task = "";
+				Date due;
 				ss >> lim;
 				ss >> lim;
 				while(ss && (wordCount <= maxWords) ){
 					std::string word;
 					ss >> word;
-					task = task + " " + word;
-					wordCount++; 
+					if(word[0] == '@'){
+						word[0] = ' ';
+						word[1] = ' ';
+						std::stringstream dateStream(word);
+						dateStream >> due;
+					} else {
+						task = task + " " + word;
+						wordCount++; 
+					}
+				
 				}
 				Task T;
 				T.name = task;
 				T.list = currentList;
+				T.dueDate = due;
 				tasklist.push_back(T);
-			} else if(lim == "##"){
-
+			} 
+			
+			else if(lim == "##"){
 				ss >> currentList;
-				if(currentList == "COMPLETE"){
+				if(currentList == "COMPLETED"){
 					break;
 				}
-			} else if(lim == "***"){
+			} 
+			
+			else if(lim == "***"){
 				break;
 			}
 		}
@@ -46,5 +60,29 @@ terminal::terminal(){
 
 
 terminal::~terminal(){
+
+}
+
+void terminal::runTime(){
+	bool running = true;
+	std::cout << "Dashboard - Input commands" << std::endl;
+	while(running == true){
+		std::string input;
+		std::cout << "| > ";
+		std::cin >> input;
+		if(input == "list"){
+			this->listAllTasks();
+		} else if(input == "quit"){
+			running = false;
+		}
+	}
+}
+
+void terminal::listAllTasks(){
+
+	for(Task T : tasklist){
+		std::cout << T.name << " | From list " << T.list << " |" << " Date: " << T.dueDate <<
+		std::endl;
+	}
 
 }

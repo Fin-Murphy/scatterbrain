@@ -12,7 +12,7 @@
 
  const int MIN_DD = 1;
  
- const int MIN_YYYY = 1821;   // minimum year 
+ const int MIN_YYYY = 0;   // minimum year 
  const int MAX_YYYY = 2121;   // maximum year 
  
  const int MIN_MM = 1;   // minimum month 
@@ -33,27 +33,7 @@
 
 
 
-struct Task {
-    std::string name = "Task_";
-    int val_needed = 1;
-    int current_val = 0;
-    std::string list = "Basic_Task";
-};
 
-class terminal {
-
-    public:
-    std::vector<Task> tasklist;
-
-    terminal();
-    ~terminal();
-
-    void termDisp(); 
-    void write();
-    void list();
-    void strike();
-    void help();
-};
 
 
 class Date
@@ -88,6 +68,26 @@ class Date
  }; //end class Date declaration 
 
 
+struct Task {
+    std::string name = "Task_";
+    int val_needed = 1;
+    int current_val = 0;
+    std::string list = "Basic_Task";
+    Date dueDate;
+};
+
+ class terminal {
+
+    public:
+    std::vector<Task> tasklist;
+
+    terminal();
+    ~terminal();
+
+    void termDisp(); 
+    void runTime();
+    void listAllTasks();
+};
 
 
 
@@ -98,8 +98,31 @@ class Date
     setDate(year, month, day);
     } catch (...) {
         std::cout << "Could not initialize Date item.\n";
-        throw;
     }
+
+}
+
+std::ostream& operator<<(std::ostream &os, const Date &rhsObj){
+
+    std::string errMessage = "ERROR: in Time class overloaded operator<<\n";
+    errMessage += "the output stream is in a failed state, no processing can take place...\n";
+    if (!os)
+    {
+        throw std::invalid_argument(errMessage);
+    }
+
+    os << std::setfill('0');
+
+    os << rhsObj.yyyy;
+    os << "/";
+    os << std::setw(2) << rhsObj.mm;
+    os << "/";
+    os << std::setw(2) << rhsObj.dd;
+
+    // set the fill character back to a blank space to prevent really ugly output of other values
+    os << std::setfill(' ');
+
+    return os;
 
 }
 
@@ -266,21 +289,21 @@ std::istream& operator>>(std::istream &in, Date &rhsObj){
     {   
         streamFailed = false;
 
-        in >> year; 
-        if (!in) { streamFailed = true; }
-
-        in >> ch; 
-        if (!in) { streamFailed = true; }
-
         in >> month; 
-        if (!in) { streamFailed = true; }
+        // if (!in) { streamFailed = true; }
 
         in >> ch; 
-        if (!in) { streamFailed = true; }
+        // if (!in) { streamFailed = true; }
 
         in >> day; 
-        if (!in) { streamFailed = true; }
+        // if (!in) { streamFailed = true; }
 
+        in >> ch; 
+        // if (!in) { streamFailed = true; }
+
+        in >> year; 
+        // if (!in) { streamFailed = true; }
+    
 
         if(streamFailed)
         {
@@ -294,12 +317,6 @@ std::istream& operator>>(std::istream &in, Date &rhsObj){
         rhsObj.setDate(year, month, day); // call setTime method where validation will take place
         
     } // END outer try block
-    catch (std::invalid_argument &e)
-    {
-        std::cout << "Bad date component error." << std::endl;
-        std::cout << e.what();
-        throw;
-    }
     catch (std::invalid_argument &e)
     {
         std::cout << "ERROR: ";
@@ -335,29 +352,6 @@ std::istream& operator>>(std::istream &in, Date &rhsObj){
 
 
 
-std::ostream& operator<<(std::ostream &os, const Date &rhsObj){
-
-    std::string errMessage = "ERROR: in Time class overloaded operator<<\n";
-    errMessage += "the output stream is in a failed state, no processing can take place...\n";
-    if (!os)
-    {
-        throw std::invalid_argument(errMessage);
-    }
-
-    os << std::setfill('0');
-
-    os << rhsObj.yyyy;
-    os << "/";
-    os << std::setw(2) << rhsObj.mm;
-    os << "/";
-    os << std::setw(2) << rhsObj.dd;
-
-    // set the fill character back to a blank space to prevent really ugly output of other values
-    os << std::setfill(' ');
-
-    return os;
-
-}
 
 
 
