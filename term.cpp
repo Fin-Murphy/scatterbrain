@@ -3,7 +3,7 @@
 
 terminal::terminal(){
 	std::vector<std::string> pullSources;
-	pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
+	// pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
 	pullSources.push_back("/Users/owner/Desktop/Vaults/0-SCHOOL/Assignments.md");
 	
 	for(std::string s : pullSources){
@@ -26,9 +26,8 @@ terminal::terminal(){
 				while(ss && (wordCount <= maxWords) ){
 					std::string word;
 					ss >> word;
-					if(word[0] == '@'){
+					if(word[0] == '>'){
 						word[0] = ' ';
-						word[1] = ' ';
 						std::stringstream dateStream(word);
 						dateStream >> due;
 					} else {
@@ -81,7 +80,10 @@ void terminal::runTime(){
 void terminal::listAllTasks(){
 
 	for(Task T : tasklist){
-		std::cout << T.name << " | From list " << T.list << " |" << " Date: " << T.dueDate <<
+		std::cout 
+		<< "[ ] " << T.dueDate << " "
+		<< std::setw(30) << T.name << std::setw(15) << " | " 
+		<< T.list << " |" <<
 		std::endl;
 	}
 

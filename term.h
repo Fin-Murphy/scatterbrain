@@ -113,11 +113,14 @@ std::ostream& operator<<(std::ostream &os, const Date &rhsObj){
 
     os << std::setfill('0');
 
-    os << rhsObj.yyyy;
-    os << "/";
-    os << std::setw(2) << rhsObj.mm;
+    os << rhsObj.mm;
     os << "/";
     os << std::setw(2) << rhsObj.dd;
+    if(rhsObj.yyyy != -1){
+        os << "/";
+        os << std::setw(2) << rhsObj.yyyy;
+    }
+   
 
     // set the fill character back to a blank space to prevent really ugly output of other values
     os << std::setfill(' ');
@@ -142,83 +145,83 @@ Date::Date(const Date& otherDate)
 
 void Date::setDate(int year, int month, int day)
 {
-    std::ostringstream errStrm;
-    errStrm << "ERROR: in method Date::setDate( " 
-    << year << ", " 
-    << month << ", " 
-    << day << " )\n";
+    // std::ostringstream errStrm;
+    // errStrm << "ERROR: in method Date::setDate( " 
+    // << year << ", " 
+    // << month << ", " 
+    // << day << " )\n";
 
-    yyyy = MIN_YYYY;
-    mm = MIN_MM;
-    dd = MIN_DD;
+    // yyyy = MIN_YYYY;
+    // mm = MIN_MM;
+    // dd = MIN_DD;
 
-    bool badArguments = false;
-	bool badYear = false;
-	bool badMonth = false;
-    bool badDay = false;
+    // bool badArguments = false;
+	// bool badYear = false;
+	// bool badMonth = false;
+    // bool badDay = false;
 
-    if ( year < MIN_YYYY || year > MAX_YYYY )
-    {
-        badYear = true;
-        errStrm << "The year value argument (" << year << ") is not valid.\n";
-		errStrm << "Valid values are in the range [" << MIN_YYYY << ", " << MAX_YYYY << "].\n";
-    }
-    else if ( month < MIN_MM || month > MAX_MM )
-    {
-        badMonth = true;
-        errStrm << "The month value argument (" << month << ") is not valid.\n";
-		errStrm << "Valid values are in the range [" << MIN_MM << ", " << MAX_MM << "].\n";
-    }
-    switch(month)  //Switch statement for proper month days ID
-    {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            if(day < MIN_DD || day > 31){
-                badDay = true;
-                errStrm << "The day value argument (" << day << ") is not valid.\n";
-                errStrm << "Valid values are in the range [" 
-                << MIN_DD 
-                << ", " << "31" << "] for this month.\n";
-            }
-            break;
-        case 2:
-            if(day < MIN_DD || day > 28){
-                badDay = true;
-                errStrm << "The day value argument (" << day << ") is not valid.\n";
-                errStrm << "Valid values are in the range [" 
-                << MIN_DD << ", " 
-                << "28" << "] for this month.\n";
-            }
-            break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            if(day < MIN_DD || day > 30){
-                badDay = true;
-                errStrm << "The day value argument (" << day << ") is not valid.\n";
-                errStrm << "Valid values are in the range [" 
-                << MIN_DD << ", " 
-                << "30" << "] for this month.\n";
-            }
-            break;
-    }
+    // if ( year < MIN_YYYY || year > MAX_YYYY )
+    // {
+    //     badYear = true;
+    //     errStrm << "The year value argument (" << year << ") is not valid.\n";
+	// 	errStrm << "Valid values are in the range [" << MIN_YYYY << ", " << MAX_YYYY << "].\n";
+    // }
+    // else if ( month < MIN_MM || month > MAX_MM )
+    // {
+    //     badMonth = true;
+    //     errStrm << "The month value argument (" << month << ") is not valid.\n";
+	// 	errStrm << "Valid values are in the range [" << MIN_MM << ", " << MAX_MM << "].\n";
+    // }
+    // switch(month)  //Switch statement for proper month days ID
+    // {
+    //     case 1:
+    //     case 3:
+    //     case 5:
+    //     case 7:
+    //     case 8:
+    //     case 10:
+    //     case 12:
+    //         if(day < MIN_DD || day > 31){
+    //             badDay = true;
+    //             errStrm << "The day value argument (" << day << ") is not valid.\n";
+    //             errStrm << "Valid values are in the range [" 
+    //             << MIN_DD 
+    //             << ", " << "31" << "] for this month.\n";
+    //         }
+    //         break;
+    //     case 2:
+    //         if(day < MIN_DD || day > 28){
+    //             badDay = true;
+    //             errStrm << "The day value argument (" << day << ") is not valid.\n";
+    //             errStrm << "Valid values are in the range [" 
+    //             << MIN_DD << ", " 
+    //             << "28" << "] for this month.\n";
+    //         }
+    //         break;
+    //     case 4:
+    //     case 6:
+    //     case 9:
+    //     case 11:
+    //         if(day < MIN_DD || day > 30){
+    //             badDay = true;
+    //             errStrm << "The day value argument (" << day << ") is not valid.\n";
+    //             errStrm << "Valid values are in the range [" 
+    //             << MIN_DD << ", " 
+    //             << "30" << "] for this month.\n";
+    //         }
+    //         break;
+    // }
 
-    badArguments = badArguments || badYear || badMonth || badDay;
-    if (badArguments)
-    {
-        errStrm << "Year set to MIN_YYYY (" << MIN_YYYY << "), ";
-        errStrm << "Month set to MIN_MM (" << MIN_MM << "), ";
-        errStrm << "Day set to MIN_DD (" << MIN_DD << ")\n";
-        std::string errMessageText = errStrm.str();
+    // badArguments = badArguments || badYear || badMonth || badDay;
+    // if (badArguments)
+    // {
+    //     errStrm << "Year set to MIN_YYYY (" << MIN_YYYY << "), ";
+    //     errStrm << "Month set to MIN_MM (" << MIN_MM << "), ";
+    //     errStrm << "Day set to MIN_DD (" << MIN_DD << ")\n";
+    //     std::string errMessageText = errStrm.str();
 
-        throw std::invalid_argument(errMessageText);
-    }
+    //     throw std::invalid_argument(errMessageText);
+    // }
 
 
     yyyy = year;
@@ -239,20 +242,6 @@ void Date::setDate(const Date &otherDate)
 } //END overloaded Data class setDate function
 
 
-
-int Date::getDay() const
-{
-	return dd; 
-}
-
-
-int Date::getMonth() const{
-    return mm;
-}
-
-int Date::getYear() const {
-    return yyyy;
-}
 
 
 Date& Date::operator=(const Date& rhsObj)
