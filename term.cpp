@@ -1,6 +1,5 @@
 #include "term.h"
 
-//Where is this workspace on my computer??
 terminal::terminal(){
 	std::vector<std::string> pullSources;
 	pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
