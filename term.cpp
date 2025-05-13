@@ -77,12 +77,13 @@ void terminal::runTime(){
 	}
 }
 
+
 void terminal::listAllTasks(){
 
 	for(Task T : tasklist){
 		std::cout 
 		<< "[ ] " << T.dueDate << " "
-		<< std::setw(30) << std::left << T.name << std::setw(15) << " | " 
+		<< std::setw(30) << std::left << T.name << std::setw(9) << " | " 
 		<< T.list << " |" <<
 		std::endl;
 	}

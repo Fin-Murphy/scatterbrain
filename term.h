@@ -118,7 +118,7 @@ std::ostream& operator<<(std::ostream &os, const Date &rhsObj){
     os << rhsObj.mm;
     os << "/";
     os << std::setw(2) << rhsObj.dd;
-    if(rhsObj.yyyy != -1){
+    if(rhsObj.yyyy != -1 || rhsObj.yyyy != 0){
         os << "/";
         os << std::setfill(' ');
         os << std::setw(4) << rhsObj.yyyy;
@@ -289,10 +289,7 @@ std::istream& operator>>(std::istream &in, Date &rhsObj){
         in >> day; 
         // if (!in) { streamFailed = true; }
 
-        in >> ch; 
-        // if (!in) { streamFailed = true; }
-
-        in >> year; 
+        // in >> year; 
         // if (!in) { streamFailed = true; }
     
 
