@@ -1,5 +1,5 @@
 #include "term.h"
-
+//trash commit
 terminal::terminal(){
 	std::vector<std::string> pullSources;
 	pullSources.push_back("/Users/owner/Desktop/Vaults/1-PROJECTS/Tasks.md");
